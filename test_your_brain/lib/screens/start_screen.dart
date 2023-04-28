@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_your_brain/screens/game_screen.dart';
 
 import '../utils/color.dart';
 
@@ -8,7 +9,7 @@ class StartScreen extends StatelessWidget {
 
   //function
   void startGame(BuildContext context) {
-    Navigator.pushNamed(context, routeName);
+    Navigator.pushNamed(context, GameScreen.routeName);
   }
 
   @override
