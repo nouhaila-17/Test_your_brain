@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_your_brain/screens/start_screen.dart';
-import 'package:test_your_brain/utils/color.dart';
+import 'package:test_your_brain/styles/color.dart';
 
 class WelcomePage extends StatelessWidget {
   //routes for after this page

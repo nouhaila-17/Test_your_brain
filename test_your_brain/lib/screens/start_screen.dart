@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_your_brain/screens/game_screen.dart';
 
-import '../utils/color.dart';
+import '../styles/color.dart';
 
 class StartScreen extends StatelessWidget {
   static String routeName = '/start-game-screen';
