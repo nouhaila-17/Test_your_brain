@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_your_brain/screens/game_screen.dart';
 import 'package:test_your_brain/screens/start_screen.dart';
 import 'package:test_your_brain/screens/welcome_page.dart';
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       routes: {
         WelcomePage.routeName: (context) => const WelcomePage(),
         StartScreen.routeName: (context) => const StartScreen(),
-        // CreateRoomScreen.routeName: (context) => const CreateRoomScreen(),
+        GameScreen.routeName: (context) => const GameScreen(),
       },
       initialRoute: WelcomePage.routeName,
     );
