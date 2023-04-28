@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:test_your_brain/utils/color.dart';
+import 'package:test_your_brain/styles/color.dart';
 import 'package:test_your_brain/utils/pad_buttons.dart';
-import 'package:test_your_brain/utils/text_styles.dart';
+import 'package:test_your_brain/styles/text_styles.dart';
 
 class GameScreen extends StatefulWidget {
   //route
@@ -18,7 +18,7 @@ class _GameScreenState extends State<GameScreen> {
     '7',
     '8',
     '9',
-    '<-',
+    'AC',
     '4',
     '5',
     '6',
@@ -58,19 +58,22 @@ class _GameScreenState extends State<GameScreen> {
           //buttons of numbers +delete + submit answer
           Expanded(
             flex: 2,
-            child: GridView.builder(
-                itemCount: numberPad
-                    .length, //number of the boxes also is indexed from 0 to 11
-                physics:
-                    const NeverScrollableScrollPhysics(), //because it scrolls
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4, //3colomns
-                ),
-                itemBuilder: (context, index) {
-                  return NumberButton(
-                    child: numberPad[index],
-                  );
-                }),
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: GridView.builder(
+                  itemCount: numberPad
+                      .length, //number of the boxes also is indexed from 0 to 11
+                  physics:
+                      const NeverScrollableScrollPhysics(), //because it scrolls
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4, //3colomns
+                  ),
+                  itemBuilder: (context, index) {
+                    return NumberButton(
+                      child: numberPad[index],
+                    );
+                  }),
+            ),
           )
         ],
       ),
