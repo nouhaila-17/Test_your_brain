@@ -34,7 +34,7 @@ class StartScreen extends StatelessWidget {
               child: SizedBox(
                 width: 300,
                 child: Text(
-                  'In this game you will solve 20 mathematic operations\nthe maximum time to solve each operation is 10s\nin the end you will know your score on 20',
+                  'In this game you will solve 20 mathematic operations the maximum time to solve each operation is 10s in the end you will know your score on 20',
                   textAlign: TextAlign.justify,
                   style: TextStyle(
                     fontSize: 20,
