@@ -1,8 +1,11 @@
-import 'package:flutter/foundation.dart';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:test_your_brain/styles/color.dart';
 import 'package:test_your_brain/utils/pad_buttons.dart';
 import 'package:test_your_brain/styles/text_styles.dart';
+
+import '../utils/random_operators.dart';
 
 class GameScreen extends StatefulWidget {
   //route
@@ -30,9 +33,11 @@ class _GameScreenState extends State<GameScreen> {
     '=',
     '0',
   ];
-  //user's answer
+  //operation////////////////////////////////////
+  RandomOperations randomOperators = RandomOperations();
+  //user's answer////////////
   String userAnswer = '';
-  //tapped button
+  //tapped button/////////////////////////////////
   void tappedButton(String clicked) {
     setState(() {
       if (clicked == '=') {
@@ -57,20 +62,31 @@ class _GameScreenState extends State<GameScreen> {
     });
   }
 
-//checking the results
-  void checkResult() {}
+//checking the results///////////////////////////////////
+  void checkResult() {
+    int userAnswerInt = int.tryParse(userAnswer) ?? 0;
+    if (userAnswerInt == randomOperators.getCorrectAnswer()) {
+      // user is correct
+      print('correct');
+    } else {
+      // user is incorrect
+      print('incorrect');
+    }
+  }
+
+  //////////////////////////
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.myColor,
       body: Column(
         children: [
-          //logo and Timer
+          //logo and Timer////////////////////////////////////////////////
           Container(
             height: 120,
             color: Colors.amber,
           ),
-          //operation
+          //operation//////////////////////////////////////////////////////
           Expanded(
             flex: 1,
             child: Center(
@@ -78,8 +94,8 @@ class _GameScreenState extends State<GameScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   //operation
-                  const Text(
-                    '1 + 1 = ',
+                  Text(
+                    '${randomOperators.firstNumber}${randomOperators.operator}${randomOperators.secondNumber}  =',
                     style: SmallTextStyle.smallTextStyle,
                   ),
                   //answer
@@ -97,7 +113,7 @@ class _GameScreenState extends State<GameScreen> {
             ),
           ),
 
-          //buttons of numbers +delete + submit answer
+          //buttons of numbers +delete + submit answer///////////////////////////
           Expanded(
             flex: 2,
             child: Padding(
