@@ -3,8 +3,6 @@ import 'package:test_your_brain/screens/game_screen.dart';
 import 'package:test_your_brain/screens/start_screen.dart';
 import 'package:test_your_brain/screens/welcome_page.dart';
 
-
-
 void main() {
   runApp(const MyApp());
 }
@@ -23,21 +21,15 @@ class MyApp extends StatelessWidget {
         ),
       ),
 
-      //home: WelcomePage(),
+      home: WelcomePage(),
 
       //route to other pages(widgets)
       routes: {
         WelcomePage.routeName: (context) => const WelcomePage(),
         StartScreen.routeName: (context) => const StartScreen(),
         GameScreen.routeName: (context) => const GameScreen(),
-
-      },
-      initialRoute: WelcomePage.routeName,
-
-        FinalScreen.routeName: (context) => const FinalScreen(),
       },
       // initialRoute: FinalScreen.routeName,
-
     );
   }
 }
