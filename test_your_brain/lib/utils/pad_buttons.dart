@@ -5,11 +5,13 @@ import '../styles/color.dart';
 
 class NumberButton extends StatelessWidget {
   final String child;
+  final VoidCallback onTap;
   var buttonColor = MyColors.boxColor;
 
   NumberButton({
     super.key,
     required this.child,
+    required this.onTap,
   });
 
   @override
@@ -24,15 +26,19 @@ class NumberButton extends StatelessWidget {
     }
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: buttonColor,
-          borderRadius: BorderRadius.circular(6),
-        ),
-        child: Center(
-          child: Text(
-            child,
-            style: SmallTextStyle.smallTextStyle,
+      //button in a way
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          decoration: BoxDecoration(
+            color: buttonColor,
+            borderRadius: BorderRadius.circular(6),
+          ),
+          child: Center(
+            child: Text(
+              child,
+              style: SmallTextStyle.smallTextStyle,
+            ),
           ),
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:test_your_brain/styles/color.dart';
 import 'package:test_your_brain/utils/pad_buttons.dart';
@@ -29,7 +30,35 @@ class _GameScreenState extends State<GameScreen> {
     '=',
     '0',
   ];
+  //user's answer
+  String userAnswer = '';
+  //tapped button
+  void tappedButton(String clicked) {
+    setState(() {
+      if (clicked == '=') {
+        //seing if the user is correct
+        checkResult();
+      } else if (clicked == 'DEL') {
+        if (userAnswer == '') {
+          userAnswer = '';
+        } else {
+          userAnswer = userAnswer.substring(0, userAnswer.length - 1);
+        }
+        //deliting the last number only
+      } else if (clicked == 'AC') {
+        //deleting everything
+        userAnswer = '';
+      } else {
+        //max numbers ton enter
+        if (userAnswer.length < 3) {
+          userAnswer += clicked;
+        }
+      }
+    });
+  }
 
+//checking the results
+  void checkResult() {}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,13 +73,26 @@ class _GameScreenState extends State<GameScreen> {
           //operation
           Expanded(
             flex: 1,
-            // ignore: avoid_unnecessary_containers
-            child: Container(
-              child: const Center(
-                child: Text(
-                  '1 + 1 = ?',
-                  style: SmallTextStyle.smallTextStyle,
-                ),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  //operation
+                  const Text(
+                    '1 + 1 = ',
+                    style: SmallTextStyle.smallTextStyle,
+                  ),
+                  //answer
+                  Container(
+                    height: 60,
+                    width: 90,
+                    //color: Colors.amber,
+                    child: Text(
+                      userAnswer,
+                      style: SmallTextStyle.smallTextStyle,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -71,6 +113,7 @@ class _GameScreenState extends State<GameScreen> {
                   itemBuilder: (context, index) {
                     return NumberButton(
                       child: numberPad[index],
+                      onTap: () => tappedButton(numberPad[index]),
                     );
                   }),
             ),
