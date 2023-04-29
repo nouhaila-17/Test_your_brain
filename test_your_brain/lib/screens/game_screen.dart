@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:test_your_brain/styles/color.dart';
 import 'package:test_your_brain/utils/pad_buttons.dart';
 import 'package:test_your_brain/styles/text_styles.dart';
-import 'package:vibration/vibration.dart';
 
 import '../utils/errors_handle.dart';
 import '../utils/random_operators.dart';
@@ -130,7 +129,7 @@ class _GameScreenState extends State<GameScreen> {
     });
   }
 
-  //////////////////////////
+  //////////////////////////The SCAFFOLD ///////////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,7 +139,7 @@ class _GameScreenState extends State<GameScreen> {
           //logo and Timer////////////////////////////////////////////////
           Container(
             height: 120,
-            color: Colors.amber,
+            color: Colors.lightGreenAccent,
           ),
           //operation//////////////////////////////////////////////////////
           Expanded(
@@ -151,14 +150,14 @@ class _GameScreenState extends State<GameScreen> {
                 children: [
                   //operation
                   Text(
-                    '${randomOperators.firstNumber}${randomOperators.operator}${randomOperators.secondNumber}  =',
+                    '${randomOperators.firstNumber}${randomOperators.operator}${randomOperators.secondNumber}= ',
                     style: NumberTextStyle.numberTextStyle,
                   ),
                   //answer
-                  Container(
+                  SizedBox(
+                    //color: Colors.amber,
                     height: 60,
                     width: 90,
-                    //color: Colors.amber,
                     child: Text(
                       userAnswer,
                       style: NumberTextStyle.numberTextStyle,
