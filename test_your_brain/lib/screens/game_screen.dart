@@ -144,13 +144,23 @@ class _GameScreenState extends State<GameScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.myColor,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          'Test Your Brain',
+          style: TextStyle(color: Colors.white),
+          textAlign: TextAlign.center,
+        ),
+        elevation: 10,
+        backgroundColor: Color.fromARGB(255, 3, 22, 98),
+        leading: Container(
+          child: Image.asset('images/logo_image.jpg'),
+        ),
+      ),
       body: Column(
         children: [
           //logo and Timer////////////////////////////////////////////////
-          Container(
-            height: 120,
-            color: Colors.amber,
-          ),
+
           //operation//////////////////////////////////////////////////////
           Expanded(
             flex: 1,
