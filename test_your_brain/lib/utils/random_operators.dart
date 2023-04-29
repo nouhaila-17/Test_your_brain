@@ -9,7 +9,11 @@ class RandomOperations {
     // Generate random numbers and operator
     firstNumber = Random().nextInt(19) + 1;
     secondNumber = Random().nextInt(19) + 1;
-    List<String> operators = ['+', '-', '*', '/'];
+    List<String> operators = [
+      '+',
+      '-',
+      '*',
+    ];
     int operatorIndex = Random().nextInt(operators.length);
     operator = operators[operatorIndex];
   }
@@ -25,9 +29,6 @@ class RandomOperations {
         break;
       case '*':
         correctAnswer = firstNumber! * secondNumber!;
-        break;
-      case '/':
-        correctAnswer = firstNumber! ~/ secondNumber!;
         break;
       default:
         correctAnswer = 0;

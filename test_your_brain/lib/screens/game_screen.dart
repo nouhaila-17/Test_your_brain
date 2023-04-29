@@ -70,11 +70,73 @@ class _GameScreenState extends State<GameScreen> {
     int userAnswerInt = int.tryParse(userAnswer) ?? 0;
     if (userAnswerInt == randomOperators.getCorrectAnswer()) {
       // user is correct
-      print('correct');
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: Container(
+                height: 200,
+                color: Colors.green,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      'Correct answer',
+                      style: SmallTextStyle.smallTextStyle,
+                    ),
+                    GestureDetector(
+                      onTap: () => nextOperation(),
+                      child: Container(
+                        height: 36,
+                        width: 36,
+                        decoration: BoxDecoration(
+                          color: Colors.green[300],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                    //button to the next operation
+                  ],
+                ),
+              ),
+            );
+          });
+      //score
+      // move to next operation immediately
     } else {
       // user is incorrect
-      print('incorrect');
+      // showDialog(
+      //     context: context,
+      //     builder: (context) {
+      //       return AlertDialog(
+      //         content: Container(
+      //           height: 200,
+      //           color: Colors.red,
+      //           child: Text('Incorrect Answer',style: SmallTextStyle.smallTextStyle,),
+      //         ),
+      //       );
+      //     });
+      //// if the answer is incorrect, keep the current operation and
+      ///// reset the user's answer
+      setState(() {
+        userAnswer = '';
+      });
     }
+  }
+
+  //next question function
+  void nextOperation() {
+    //removing dialog
+    Navigator.of(context).pop();
+    //reset operation and userAnswer
+    setState(() {
+      randomOperators = RandomOperations();
+      userAnswer = '';
+    });
   }
 
   //////////////////////////
@@ -99,7 +161,7 @@ class _GameScreenState extends State<GameScreen> {
                   //operation
                   Text(
                     '${randomOperators.firstNumber}${randomOperators.operator}${randomOperators.secondNumber}  =',
-                    style: SmallTextStyle.smallTextStyle,
+                    style: NumberTextStyle.numberTextStyle,
                   ),
                   //answer
                   Container(
@@ -108,7 +170,7 @@ class _GameScreenState extends State<GameScreen> {
                     //color: Colors.amber,
                     child: Text(
                       userAnswer,
-                      style: SmallTextStyle.smallTextStyle,
+                      style: NumberTextStyle.numberTextStyle,
                     ),
                   ),
                 ],
