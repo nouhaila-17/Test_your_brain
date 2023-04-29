@@ -19,6 +19,8 @@ class NumberButton extends StatelessWidget {
     //condition so the = is green
     if (child == '=') {
       buttonColor = Colors.green;
+    } else if (child == '') {
+      buttonColor = MyColors.myColor;
     } else if (child == 'DEL') {
       buttonColor = Colors.red;
     } else if (child == 'AC') {

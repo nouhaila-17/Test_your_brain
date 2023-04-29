@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:test_your_brain/styles/color.dart';
 import 'package:test_your_brain/utils/pad_buttons.dart';
@@ -30,8 +28,11 @@ class _GameScreenState extends State<GameScreen> {
     '1',
     '2',
     '3',
-    '=',
+    '-',
     '0',
+    '',
+    '',
+    '='
   ];
   //operation////////////////////////////////////
   RandomOperations randomOperators = RandomOperations();
@@ -43,6 +44,8 @@ class _GameScreenState extends State<GameScreen> {
       if (clicked == '=') {
         //seing if the user is correct
         checkResult();
+      } else if (clicked == '') {
+        userAnswer;
       } else if (clicked == 'DEL') {
         if (userAnswer == '') {
           userAnswer = '';

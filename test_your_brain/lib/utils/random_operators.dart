@@ -7,8 +7,8 @@ class RandomOperations {
 
   RandomOperations() {
     // Generate random numbers and operator
-    firstNumber = Random().nextInt(10);
-    secondNumber = Random().nextInt(10);
+    firstNumber = Random().nextInt(19) + 1;
+    secondNumber = Random().nextInt(19) + 1;
     List<String> operators = ['+', '-', '*', '/'];
     int operatorIndex = Random().nextInt(operators.length);
     operator = operators[operatorIndex];
