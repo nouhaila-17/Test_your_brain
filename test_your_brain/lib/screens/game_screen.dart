@@ -63,8 +63,8 @@ class _GameScreenState extends State<GameScreen> {
               child: GridView.builder(
                   itemCount: numberPad
                       .length, //number of the boxes also is indexed from 0 to 11
-                  physics:
-                      const NeverScrollableScrollPhysics(), //because it scrolls
+                  //physics:
+                     // const NeverScrollableScrollPhysics(), //because it scrolls
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4, //3colomns
                   ),
