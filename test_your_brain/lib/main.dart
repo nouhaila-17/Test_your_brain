@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_your_brain/screens/game_screen.dart';
 import 'package:test_your_brain/screens/start_screen.dart';
 import 'package:test_your_brain/screens/welcome_page.dart';
+import 'package:test_your_brain/screens/final_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +28,11 @@ class MyApp extends StatelessWidget {
         StartScreen.routeName: (context) => const StartScreen(),
         GameScreen.routeName: (context) => const GameScreen(),
       },
-      initialRoute: WelcomePage.routeName,
+     initialRoute: FinalScreen.routeName,
     );
   }
 }
+
+
+
+
