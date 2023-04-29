@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import '../styles/color.dart';
-import 'package:test_your_brain/screens/start_screen.dart';
+import 'package:test_your_brain/screens/start_screen.dart'; //OK
 
 class FinalScreen extends StatelessWidget {
   static String routeName = '/final-screen';
-   final int score;
-   //quand on a le score
-   final int level;
-   //quand on a le score
+  //quand on a le score
+  //quand on a le score
   const FinalScreen({
     Key? key,
-    required this.score,
-    required this.level,
+    //required this.score,
+    //required this.level,
   }) : super(key: key);
 
   void startGame(BuildContext context) {
     Navigator.pushNamed(context, StartScreen.routeName);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,10 +41,10 @@ class FinalScreen extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
-                  'Your Score is $score',
-                  style: const TextStyle(
+                  'Your Score is x', //to complete later
+                  style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
@@ -60,10 +59,10 @@ class FinalScreen extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
-                  'Level $level',
-                  style: const TextStyle(
+                  'Level y', //to complete later
+                  style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
