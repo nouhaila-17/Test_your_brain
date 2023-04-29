@@ -5,17 +5,21 @@ import 'package:test_your_brain/styles/text_styles.dart';
 
 import '../utils/errors_handle.dart';
 import '../utils/random_operators.dart';
+import 'final_screen.dart';
 
 class GameScreen extends StatefulWidget {
   //route
   static String routeName = '/game-screen';
   const GameScreen({super.key});
-
   @override
   State<GameScreen> createState() => _GameScreenState();
 }
 
 class _GameScreenState extends State<GameScreen> {
+  void startGame(BuildContext context) {
+    Navigator.pushNamed(context, FinalScreen.routeName);
+  }
+
   //numbers of the pad
   List<String> numberPad = [
     '7',
@@ -39,11 +43,15 @@ class _GameScreenState extends State<GameScreen> {
   RandomOperations randomOperators = RandomOperations();
   //user's answer////////////
   String userAnswer = '';
+  //Score variable
+  int score = 0;
+  // initial timer value
+  int _timer = 10;
   //tapped button/////////////////////////////////
   void tappedButton(String clicked) {
     setState(() {
       if (clicked == '=') {
-        //seing if the user is correct
+        //seeing if the user is correct
         checkResult();
       } else if (clicked == '') {
         userAnswer;
@@ -67,9 +75,10 @@ class _GameScreenState extends State<GameScreen> {
   }
 
 //checking the results///////////////////////////////////
-  void checkResult() {
+  int checkResult() {
     int userAnswerInt = int.tryParse(userAnswer) ?? 0;
     if (userAnswerInt == randomOperators.getCorrectAnswer()) {
+      score += 1;
       // user is correct
       showDialog(
           context: context,
@@ -116,8 +125,11 @@ class _GameScreenState extends State<GameScreen> {
       //showing an alert
       ErrorHandler.showError(context, 'Incorrect answer!');
     }
+    //The final score
+    return score;
   }
 
+  int i = 0;
   //next question function
   void nextOperation() {
     //removing dialog
@@ -126,8 +138,18 @@ class _GameScreenState extends State<GameScreen> {
     setState(() {
       randomOperators = RandomOperations();
       userAnswer = '';
+      i++;
+      cond();
     });
   }
+
+  void cond() {
+    if (i == 3) {
+      startGame(context);
+    }
+  }
+
+  //////////////////////////Timer start ///////////////////////////////////////////////////////////////////
 
   //////////////////////////The SCAFFOLD ///////////////////////////////////////////////////////////////////
   @override
@@ -142,15 +164,15 @@ class _GameScreenState extends State<GameScreen> {
           textAlign: TextAlign.center,
         ),
         elevation: 10,
-        backgroundColor: Color.fromARGB(255, 3, 22, 98),
-        leading: Container(
-          child: Image.asset('images/logo_image.jpg'),
-        ),
+        backgroundColor: MyColors.boxColor,
+        //  leading: Container(
+        //    child: Image.asset('images/logo_image.jpg'),
+        // ),
       ),
       body: Column(
         children: [
           //logo and Timer////////////////////////////////////////////////
-          
+
           //operation//////////////////////////////////////////////////////
           Expanded(
             flex: 1,
@@ -186,8 +208,8 @@ class _GameScreenState extends State<GameScreen> {
               child: GridView.builder(
                   itemCount: numberPad
                       .length, //number of the boxes also is indexed from 0 to 11
-                  physics:
-                      const NeverScrollableScrollPhysics(), //because it scrolls
+                  //    physics:
+                  //        const NeverScrollableScrollPhysics(), //because it scrolls
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4, //3colomns
                   ),
