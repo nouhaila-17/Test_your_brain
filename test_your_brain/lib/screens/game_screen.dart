@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:test_your_brain/styles/color.dart';
 import 'package:test_your_brain/utils/pad_buttons.dart';
 import 'package:test_your_brain/styles/text_styles.dart';
+import 'package:vibration/vibration.dart';
 
+import '../utils/errors_handle.dart';
 import '../utils/random_operators.dart';
 
 class GameScreen extends StatefulWidget {
@@ -80,12 +82,13 @@ class _GameScreenState extends State<GameScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(
+                    const Text(
                       'Correct answer',
                       style: SmallTextStyle.smallTextStyle,
                     ),
                     GestureDetector(
-                      onTap: () => nextOperation(),
+                      onTap: () =>
+                          nextOperation(), // move to next operation immediately
                       child: Container(
                         height: 36,
                         width: 36,
@@ -93,7 +96,7 @@ class _GameScreenState extends State<GameScreen> {
                           color: Colors.green[300],
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.arrow_forward,
                           color: Colors.white,
                         ),
@@ -106,25 +109,13 @@ class _GameScreenState extends State<GameScreen> {
             );
           });
       //score
-      // move to next operation immediately
     } else {
-      // user is incorrect
-      // showDialog(
-      //     context: context,
-      //     builder: (context) {
-      //       return AlertDialog(
-      //         content: Container(
-      //           height: 200,
-      //           color: Colors.red,
-      //           child: Text('Incorrect Answer',style: SmallTextStyle.smallTextStyle,),
-      //         ),
-      //       );
-      //     });
-      //// if the answer is incorrect, keep the current operation and
-      ///// reset the user's answer
+      //// if the answer is incorrect, keep the current operation and reset the user's answer
       setState(() {
         userAnswer = '';
       });
+      //showing an alert
+      ErrorHandler.showError(context, 'Incorrect answer!');
     }
   }
 
