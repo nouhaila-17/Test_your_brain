@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:test_your_brain/screens/start_screen.dart';
 import 'package:test_your_brain/styles/color.dart';
 import 'package:test_your_brain/utils/pad_buttons.dart';
 import 'package:test_your_brain/styles/text_styles.dart';
-
+import 'package:test_your_brain/screens/final_screen.dart';
 import '../utils/errors_handle.dart';
 import '../utils/random_operators.dart';
+
 
 class GameScreen extends StatefulWidget {
   //route
@@ -13,9 +15,11 @@ class GameScreen extends StatefulWidget {
 
   @override
   State<GameScreen> createState() => _GameScreenState();
+ 
 }
 
 class _GameScreenState extends State<GameScreen> {
+  
   //numbers of the pad
   List<String> numberPad = [
     '7',
@@ -117,7 +121,7 @@ class _GameScreenState extends State<GameScreen> {
       ErrorHandler.showError(context, 'Incorrect answer!');
     }
   }
-
+    int i=0;
   //next question function
   void nextOperation() {
     //removing dialog
@@ -127,8 +131,19 @@ class _GameScreenState extends State<GameScreen> {
       randomOperators = RandomOperations();
       userAnswer = '';
     });
+    ++i;
+    Cond();
   }
+void Cond() {
+  if (i==4 ){
+      EndOfGame(context);
 
+  }
+}
+//function
+  void EndOfGame(BuildContext context) {
+    Navigator.pushNamed(context, FinalScreen.routeName);
+  }
   //////////////////////////The SCAFFOLD ///////////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
@@ -186,8 +201,8 @@ class _GameScreenState extends State<GameScreen> {
               child: GridView.builder(
                   itemCount: numberPad
                       .length, //number of the boxes also is indexed from 0 to 11
-                  physics:
-                      const NeverScrollableScrollPhysics(), //because it scrolls
+                  //physics:
+                    //  const NeverScrollableScrollPhysics(), //because it scrolls
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4, //3colomns
                   ),

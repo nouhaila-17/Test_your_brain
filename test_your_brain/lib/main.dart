@@ -4,6 +4,8 @@ import 'package:test_your_brain/screens/start_screen.dart';
 import 'package:test_your_brain/screens/welcome_page.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:test_your_brain/screens/final_screen.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -41,8 +43,9 @@ class MyApp extends StatelessWidget {
         WelcomePage.routeName: (context) => const WelcomePage(),
         StartScreen.routeName: (context) => const StartScreen(),
         GameScreen.routeName: (context) => const GameScreen(),
+        FinalScreen.routeName:(context) => const FinalScreen(),
       },
-      // initialRoute: FinalScreen.routeName,
+     // initialRoute: FinalScreen.routeName,
     );
   }
 }
