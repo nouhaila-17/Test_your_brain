@@ -6,11 +6,10 @@ class FinalScreen extends StatelessWidget {
   static String routeName = '/final-screen';
   //quand on a le score
   //quand on a le score
-  const FinalScreen({
-    Key? key,
-    //required this.score,
-    //required this.level,
-  }) : super(key: key);
+  const FinalScreen({super.key
+      //required this.score,
+      //required this.level,
+      });
 
   void startGame(BuildContext context) {
     Navigator.pushNamed(context, StartScreen.routeName);
@@ -19,27 +18,32 @@ class FinalScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MyColors.myColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
               'images/logo_image.jpg',
-              width: 150,
-              height: 150,
+              width: 500,
+              height: 100,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             const Text(
               'Game Over',
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 35,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 30),
             Container(
-              width: 200,
+              width: 500,
               height: 80,
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
+                color: MyColors.boxColor,
+                borderRadius: BorderRadius.circular(20),
               ),
               child: const Center(
                 child: Text(
@@ -53,11 +57,11 @@ class FinalScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Container(
-              width: 200,
+              width: 500,
               height: 80,
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
+                color: MyColors.boxColor,
+                borderRadius: BorderRadius.circular(20),
               ),
               child: const Center(
                 child: Text(
@@ -81,7 +85,7 @@ class FinalScreen extends StatelessWidget {
                   minimumSize: const Size(200, 50),
                 ),
                 child: const Text(
-                  'olay again ?',
+                  'play again ?',
                   style: TextStyle(
                     color: MyColors.myColor,
                     fontSize: 25,

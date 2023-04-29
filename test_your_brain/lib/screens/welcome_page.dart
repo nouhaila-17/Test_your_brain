@@ -47,7 +47,7 @@ class WelcomePage extends StatelessWidget {
                       // fontSize: 18,
                       // fontWeight: FontWeight.bold,
                       ),
-                  minimumSize: Size(200, 50),
+                  minimumSize: const Size(200, 50),
                 ),
                 child: const Text(
                   'Next',
