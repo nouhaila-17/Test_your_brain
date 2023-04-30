@@ -144,7 +144,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void cond() {
-    if (i == 3) {
+    if (i == 2) {
       startGame(context);
     }
   }
