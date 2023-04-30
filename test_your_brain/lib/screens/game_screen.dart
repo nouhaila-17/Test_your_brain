@@ -76,6 +76,11 @@ class _GameScreenState extends State<GameScreen> {
     int userAnswerInt = int.tryParse(userAnswer) ?? 0;
     if (userAnswerInt == randomOperators.getCorrectAnswer()) {
       score+= 1;
+      Navigator.pushNamed(
+  context,
+  FinalScreen.routeName,
+  arguments: {'score': score},
+);
       // user is correct
       showDialog(
           context: context,

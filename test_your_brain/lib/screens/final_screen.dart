@@ -1,61 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:test_your_brain/styles/color.dart';
-import 'package:test_your_brain/styles/text_styles.dart';
-import 'package:test_your_brain/screens/start_screen.dart';
+import 'game_screen.dart';
 
 class FinalScreen extends StatelessWidget {
-  //route
-  static String routeName = '/final-screen';
-  const FinalScreen({super.key});
+  static const routeName = '/final-screen';
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final score = args['score'] as int;
+
     return Scaffold(
-      backgroundColor: MyColors.myColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            //result
             Text(
-              'Your Score',
-              style: TextStyle(
-                fontSize: 50,
-                color: Colors.white,
-              ),
+              'Your score is:',
+              style: TextStyle(fontSize: 24.0),
             ),
-            SizedBox(height: 40),
-            //score
             Text(
-              '${ModalRoute.of(context)!.settings.arguments}',
-              style: NumberTextStyle.numberTextStyle,
+              score.toString(),
+              style: TextStyle(fontSize: 48.0),
             ),
-            SizedBox(height: 40),
-            //restart game button
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, StartScreen.routeName);
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
               },
-              child: Container(
-                height: 60,
-                width: 200,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: Center(
-                  child: Text(
-                    'Restart Game',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: MyColors.myColor,
-                    ),
-                  ),
-                ),
-              ),
-            )
+              child: Text('Play again?'),
+            ),
           ],
         ),
       ),
