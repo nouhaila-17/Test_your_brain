@@ -1,24 +1,12 @@
 import 'package:flutter/material.dart';
-import '../styles/color.dart';
-import 'package:test_your_brain/screens/start_screen.dart'; //OK
-import 'package:test_your_brain/screens/game_screen.dart';
+import 'package:test_your_brain/styles/color.dart';
+import 'package:test_your_brain/styles/text_styles.dart';
+import 'package:test_your_brain/screens/start_screen.dart';
 
 class FinalScreen extends StatelessWidget {
+  //route
   static String routeName = '/final-screen';
-  //quand on a le score
-  //quand on a le score
-  
-  const FinalScreen({super.key
-      //required this.score,
-      //required this.level,
-      });
-
-
-  void startGame(BuildContext context) {
-    Navigator.pushNamed(context, StartScreen.routeName);
-  }
-
-
+  const FinalScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,78 +15,47 @@ class FinalScreen extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              'images/logo_image.jpg',
-              width: 500,
-              height: 100,
-            ),
-            const SizedBox(height: 40),
-            const Text(
-              'Game Over',
+            //result
+            Text(
+              'Your Score',
               style: TextStyle(
-                fontSize: 35,
-                fontWeight: FontWeight.bold,
+                fontSize: 50,
                 color: Colors.white,
               ),
             ),
-            const SizedBox(height: 30),
-            Container(
-              width: 500,
-              height: 80,
-              decoration: BoxDecoration(
-                color: MyColors.boxColor,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Center(
-                child: Text(
-                  
-
-                  'Your Score is.' , //to complete later
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+            SizedBox(height: 40),
+            //score
+            Text(
+              '${ModalRoute.of(context)!.settings.arguments}',
+              style: NumberTextStyle.numberTextStyle,
             ),
-            const SizedBox(height: 20),
-            Container(
-              width: 500,
-              height: 80,
-              decoration: BoxDecoration(
-                color: MyColors.boxColor,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Center(
-                child: Text(
-                  'Level y', //to complete later
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+            SizedBox(height: 40),
+            //restart game button
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, StartScreen.routeName);
+              },
+              child: Container(
+                height: 60,
+                width: 200,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: Center(
+                  child: Text(
+                    'Restart Game',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: MyColors.myColor,
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 50),
-            ElevatedButton(
-                onPressed: () => startGame(context),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  textStyle: const TextStyle(
-                      // fontSize: 18,
-                      // fontWeight: FontWeight.bold,
-                      ),
-                  minimumSize: const Size(200, 50),
-                ),
-                child: const Text(
-                  'play again ?',
-                  style: TextStyle(
-                    color: MyColors.myColor,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )),
+            )
           ],
         ),
       ),

@@ -19,6 +19,7 @@ class GameScreen extends StatefulWidget {
 }
 class _GameScreenState extends State<GameScreen> {
     int score =0 ;
+   
     
   //numbers of the pad
   List<String> numberPad = [
@@ -112,6 +113,7 @@ class _GameScreenState extends State<GameScreen> {
               ),
             );
           });
+          
       //score
     } else {
       //// if the answer is incorrect, keep the current operation and reset the user's answer
