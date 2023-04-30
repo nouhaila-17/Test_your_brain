@@ -17,9 +17,9 @@ class GameScreen extends StatefulWidget {
   State<GameScreen> createState() => _GameScreenState();
  
 }
-
 class _GameScreenState extends State<GameScreen> {
-  
+    int score =0 ;
+    
   //numbers of the pad
   List<String> numberPad = [
     '7',
@@ -71,9 +71,10 @@ class _GameScreenState extends State<GameScreen> {
   }
 
 //checking the results///////////////////////////////////
-  void checkResult() {
+  int checkResult() {
     int userAnswerInt = int.tryParse(userAnswer) ?? 0;
     if (userAnswerInt == randomOperators.getCorrectAnswer()) {
+      score+= 1;
       // user is correct
       showDialog(
           context: context,
@@ -120,6 +121,7 @@ class _GameScreenState extends State<GameScreen> {
       //showing an alert
       ErrorHandler.showError(context, 'Incorrect answer!');
     }
+    return score;
   }
     int i=0;
   //next question function
