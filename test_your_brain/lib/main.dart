@@ -6,7 +6,7 @@ import 'package:test_your_brain/screens/welcome_page.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
 
-import 'styles/color.dart';
+import 'package:test_your_brain/styles/color.dart';
 
 void main() {
   runApp(const MyApp());

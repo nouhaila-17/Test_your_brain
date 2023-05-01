@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test_your_brain/screens/start_screen.dart';
 import 'package:test_your_brain/styles/color.dart';
 import 'package:test_your_brain/utils/pad_buttons.dart';
 import 'package:test_your_brain/styles/text_styles.dart';
 import 'package:test_your_brain/screens/final_screen.dart';
-import '../utils/errors_handle.dart';
 import '../utils/random_operators.dart';
 
 class GameScreen extends StatefulWidget {
@@ -18,6 +16,7 @@ class GameScreen extends StatefulWidget {
 
 class _GameScreenState extends State<GameScreen> {
   int score = 0;
+  String level = '';
 
   //numbers of the pad
   List<String> numberPad = [
