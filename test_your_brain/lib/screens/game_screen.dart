@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_your_brain/screens/start_screen.dart';
 import 'package:test_your_brain/styles/color.dart';
 import 'package:test_your_brain/utils/pad_buttons.dart';
 import 'package:test_your_brain/styles/text_styles.dart';
@@ -69,9 +70,10 @@ class _GameScreenState extends State<GameScreen> {
   }
 
 //checking the results///////////////////////////////////
-  void checkResult() {
+  int checkResult() {
     int userAnswerInt = int.tryParse(userAnswer) ?? 0;
     if (userAnswerInt == randomOperators.getCorrectAnswer()) {
+      score += 1;
       // user is correct
       showDialog(
           context: context,
@@ -109,22 +111,17 @@ class _GameScreenState extends State<GameScreen> {
               ),
             );
           });
+
+      //score
     } else {
-      /* //// if the answer is incorrect, keep the current operation and reset the user's answer
-      setState(() {
-        userAnswer = '';
-        YourFault();
-      });
-      //showing an alert
-      ErrorHandler.showError(context, 'Incorrect answer!');*/
-      ////if the answer is incorrect, PASS
+      //// if the answer is incorrect, keep the current operation and reset the user's answer
       showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
               content: Container(
                 height: 200,
-                color: const Color.fromARGB(255, 209, 37, 6),
+                color: Colors.red,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -139,7 +136,7 @@ class _GameScreenState extends State<GameScreen> {
                         height: 36,
                         width: 36,
                         decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 209, 37, 6),
+                          color: Color.fromARGB(255, 217, 11, 11),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: const Icon(
@@ -155,6 +152,7 @@ class _GameScreenState extends State<GameScreen> {
             );
           });
     }
+    return score;
   }
 
   int i = 0;
@@ -171,18 +169,20 @@ class _GameScreenState extends State<GameScreen> {
     Cond();
   }
 
-  // ignore: non_constant_identifier_names
   void Cond() {
     if (i == 4) {
-      startGame(context);
+      Navigator.pushNamed(
+        context,
+        FinalScreen.routeName,
+        arguments: {'score': score},
+      );
     }
   }
 
 //function
-  // ignore: non_constant_identifier_names
-  void startGame(BuildContext context) {
-    Navigator.pushNamed(context, FinalScreen.routeName);
-  }
+  //void EndOfGame(BuildContext context) {
+  //   Navigator.pushNamed(context, FinalScreen.routeName);
+  // }
 
   //////////////////////////The SCAFFOLD ///////////////////////////////////////////////////////////////////
   @override
@@ -191,13 +191,13 @@ class _GameScreenState extends State<GameScreen> {
       backgroundColor: MyColors.myColor,
       appBar: AppBar(
         centerTitle: true,
-        title: const Text(
+        title: Text(
           'Test Your Brain',
           style: TextStyle(color: Colors.white),
           textAlign: TextAlign.center,
         ),
         elevation: 10,
-        backgroundColor: const Color.fromARGB(255, 3, 22, 98),
+        backgroundColor: Color.fromARGB(255, 3, 22, 98),
         leading: Container(
           child: Image.asset('images/logo_image.jpg'),
         ),
