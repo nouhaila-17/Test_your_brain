@@ -167,11 +167,40 @@ class _GameScreenState extends State<GameScreen> {
     });
     ++i;
     Cond();
+  }
 
-//function
-  //void EndOfGame(BuildContext context) {
-  //   Navigator.pushNamed(context, FinalScreen.routeName);
-  // }
+  void Cond() {
+    ///i=4 for now , just for test , will be changed later to 20
+    if (i == 4) {
+      Navigator.pushNamed(
+        context,
+        FinalScreen.routeName,
+        arguments: {'score': score},
+      );
+    }
+  }
+
+//function to condition the LEVEL///
+  /*void levelCond() {
+    if (score < 5) {
+      level = "very Bad";
+    } else {
+      if (score >= 5 || score < 10) {
+        level = "Bad";
+      } else {
+        if (score >= 10 || score < 15) {
+          level = "Good";
+        } else {
+          level = "Very Good";
+        }
+      }
+    }
+    Navigator.pushNamed(
+      context,
+      FinalScreen.routeName,
+      arguments: {'level': level},
+    );
+  }*/
 
   //////////////////////////The SCAFFOLD ///////////////////////////////////////////////////////////////////
   @override
