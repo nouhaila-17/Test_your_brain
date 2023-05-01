@@ -18,6 +18,7 @@ class GameScreen extends StatefulWidget {
 
 class _GameScreenState extends State<GameScreen> {
   int score = 0;
+  String level='';
 
   //numbers of the pad
   List<String> numberPad = [
@@ -167,6 +168,7 @@ class _GameScreenState extends State<GameScreen> {
     });
     ++i;
     Cond();
+    levelCond();
   }
 
   void Cond() {
@@ -177,6 +179,26 @@ class _GameScreenState extends State<GameScreen> {
         arguments: {'score': score},
       );
     }
+  }
+  void levelCond(){
+    if (score<5){
+      level="very Bad";
+    }else{
+      if (score>=5 || score<10){
+        level="Bad";
+      }else{
+        if (score>=10 || score<15 ){
+          level="Good";
+        }else{
+          level="Very Good";
+        }
+      }
+    }
+    Navigator.pushNamed(
+        context,
+        FinalScreen.routeName,
+        arguments: {'level': level},
+    );
   }
 
 //function
