@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         WelcomePage.routeName: (context) => const WelcomePage(),
         StartScreen.routeName: (context) => const StartScreen(),
         GameScreen.routeName: (context) => const GameScreen(),
-        FinalScreen.routeName:(context) =>  FinalScreen(),
+        FinalScreen.routeName:(context) => const FinalScreen(),
       },
      // initialRoute: FinalScreen.routeName,
     );
