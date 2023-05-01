@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:test_your_brain/screens/start_screen.dart';
 import 'package:test_your_brain/styles/color.dart';
 import 'package:test_your_brain/utils/pad_buttons.dart';
 import 'package:test_your_brain/styles/text_styles.dart';
-
+import 'package:test_your_brain/screens/final_screen.dart';
 import '../utils/errors_handle.dart';
 import '../utils/random_operators.dart';
 
@@ -16,6 +17,8 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
+  int score = 0;
+
   //numbers of the pad
   List<String> numberPad = [
     '7',
@@ -67,9 +70,10 @@ class _GameScreenState extends State<GameScreen> {
   }
 
 //checking the results///////////////////////////////////
-  void checkResult() {
+  int checkResult() {
     int userAnswerInt = int.tryParse(userAnswer) ?? 0;
     if (userAnswerInt == randomOperators.getCorrectAnswer()) {
+      score += 1;
       // user is correct
       showDialog(
           context: context,
@@ -107,17 +111,51 @@ class _GameScreenState extends State<GameScreen> {
               ),
             );
           });
+
       //score
     } else {
       //// if the answer is incorrect, keep the current operation and reset the user's answer
-      setState(() {
-        userAnswer = '';
-      });
-      //showing an alert
-      ErrorHandler.showError(context, 'Incorrect answer!');
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: Container(
+                height: 200,
+                color: Colors.red,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const Text(
+                      'Wrong answer',
+                      style: SmallTextStyle.smallTextStyle,
+                    ),
+                    GestureDetector(
+                      onTap: () =>
+                          nextOperation(), // move to next operation immediately
+                      child: Container(
+                        height: 36,
+                        width: 36,
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 217, 11, 11),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                    //button to the next operation
+                  ],
+                ),
+              ),
+            );
+          });
     }
+    return score;
   }
 
+  int i = 0;
   //next question function
   void nextOperation() {
     //removing dialog
@@ -127,7 +165,13 @@ class _GameScreenState extends State<GameScreen> {
       randomOperators = RandomOperations();
       userAnswer = '';
     });
-  }
+    ++i;
+    Cond();
+
+//function
+  //void EndOfGame(BuildContext context) {
+  //   Navigator.pushNamed(context, FinalScreen.routeName);
+  // }
 
   //////////////////////////The SCAFFOLD ///////////////////////////////////////////////////////////////////
   @override
@@ -150,7 +194,7 @@ class _GameScreenState extends State<GameScreen> {
       body: Column(
         children: [
           //logo and Timer////////////////////////////////////////////////
-          
+
           //operation//////////////////////////////////////////////////////
           Expanded(
             flex: 1,
@@ -186,8 +230,8 @@ class _GameScreenState extends State<GameScreen> {
               child: GridView.builder(
                   itemCount: numberPad
                       .length, //number of the boxes also is indexed from 0 to 11
-                  physics:
-                      const NeverScrollableScrollPhysics(), //because it scrolls
+                  //physics:
+                  //  const NeverScrollableScrollPhysics(), //because it scrolls
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4, //3colomns
                   ),

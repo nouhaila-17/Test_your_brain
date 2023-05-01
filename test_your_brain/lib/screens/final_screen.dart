@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:test_your_brain/screens/game_screen.dart';
 import '../styles/color.dart';
-import 'package:test_your_brain/screens/start_screen.dart'; //OK
 
 class FinalScreen extends StatelessWidget {
-  static String routeName = '/final-screen';
-  //quand on a le score
-  //quand on a le score
-  const FinalScreen({super.key
-      //required this.score,
-      //required this.level,
-      });
+  static const routeName = '/final-screen';
 
   void startGame(BuildContext context) {
-    Navigator.pushNamed(context, StartScreen.routeName);
+    Navigator.pushNamed(context, GameScreen.routeName);
   }
+
+  const FinalScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final score = args['score'] as int;
+
     return Scaffold(
       backgroundColor: MyColors.myColor,
       body: Center(
@@ -40,23 +40,24 @@ class FinalScreen extends StatelessWidget {
             const SizedBox(height: 30),
             Container(
               width: 500,
-              height: 80,
+              height: 60,
               decoration: BoxDecoration(
                 color: MyColors.boxColor,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: const Center(
-                child: Text(
-                  'Your Score is x', //to complete later
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+
+                    style: TextStyle(fontSize: 30.0),
                   ),
-                ),
+                ],
               ),
             ),
             const SizedBox(height: 20),
-            Container(
+            //IF WE WANT TO ADD A LEVEL LATER
+            /*Container(
               width: 500,
               height: 80,
               decoration: BoxDecoration(
@@ -72,26 +73,26 @@ class FinalScreen extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 50),
+            ),*/
             ElevatedButton(
-                onPressed: () => startGame(context),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  textStyle: const TextStyle(
-                      // fontSize: 18,
-                      // fontWeight: FontWeight.bold,
-                      ),
-                  minimumSize: const Size(200, 50),
+              onPressed: () => startGame(context),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                textStyle: const TextStyle(
+                    // fontSize: 18,
+                    // fontWeight: FontWeight.bold,
+                    ),
+                minimumSize: const Size(200, 50),
+              ),
+              child: const Text(
+                'play again ?',
+                style: TextStyle(
+                  color: MyColors.myColor,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
                 ),
-                child: const Text(
-                  'play again ?',
-                  style: TextStyle(
-                    color: MyColors.myColor,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )),
+              ),
+            ),
           ],
         ),
       ),
