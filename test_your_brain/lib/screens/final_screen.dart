@@ -4,12 +4,8 @@ import 'package:test_your_brain/screens/start_screen.dart'; //OK
 
 class FinalScreen extends StatelessWidget {
   static String routeName = '/final-screen';
-  //quand on a le score
-  //quand on a le score
-  const FinalScreen({super.key
-      //required this.score,
-      //required this.level,
-      });
+
+  const FinalScreen({super.key});
 
   void startGame(BuildContext context) {
     Navigator.pushNamed(context, StartScreen.routeName);
@@ -47,7 +43,7 @@ class FinalScreen extends StatelessWidget {
               ),
               child: const Center(
                 child: Text(
-                  'Your Score is x', //to complete later
+                  'Your Score is score ', //to complete later
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
