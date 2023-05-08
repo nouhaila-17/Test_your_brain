@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:test_your_brain/screens/start_screen.dart';
 import 'package:test_your_brain/styles/color.dart';
 import 'package:test_your_brain/utils/pad_buttons.dart';
 import 'package:test_your_brain/styles/text_styles.dart';
 import 'package:test_your_brain/screens/final_screen.dart';
+import '../utils/errors_handle.dart';
 import '../utils/random_operators.dart';
 
 class GameScreen extends StatefulWidget {
@@ -16,7 +18,6 @@ class GameScreen extends StatefulWidget {
 
 class _GameScreenState extends State<GameScreen> {
   int score = 0;
-  String level = '';
 
   //numbers of the pad
   List<String> numberPad = [
@@ -169,8 +170,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void Cond() {
-    ///i=4 for now , just for test , will be changed later to 20
-    if (i == 4) {
+    if (i == 20) {
       Navigator.pushNamed(
         context,
         FinalScreen.routeName,
@@ -179,27 +179,10 @@ class _GameScreenState extends State<GameScreen> {
     }
   }
 
-//function to condition the LEVEL///
-  /*void levelCond() {
-    if (score < 5) {
-      level = "very Bad";
-    } else {
-      if (score >= 5 || score < 10) {
-        level = "Bad";
-      } else {
-        if (score >= 10 || score < 15) {
-          level = "Good";
-        } else {
-          level = "Very Good";
-        }
-      }
-    }
-    Navigator.pushNamed(
-      context,
-      FinalScreen.routeName,
-      arguments: {'level': level},
-    );
-  }*/
+//function
+  //void EndOfGame(BuildContext context) {
+  //   Navigator.pushNamed(context, FinalScreen.routeName);
+  // }
 
   //////////////////////////The SCAFFOLD ///////////////////////////////////////////////////////////////////
   @override
